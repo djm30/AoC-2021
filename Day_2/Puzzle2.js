@@ -7,44 +7,42 @@ let readInByLine = async () =>{
     const directions = []
     const fileStream = fs.createReadStream("directions.txt");
 
-    let re = /(forward|up|down)\s(\d*)/g;
-
     const rl = readline.createInterface({
         input: fileStream,
         crlfDelay: Infinity
     });
-    let i = 0;
+
     for await (const line of rl){
         
-        if(i==8){
-            break;
-        }
-        let match = re.exec(line);
+        directions.push(line)
 
-        console.log("Line: "  +  line)
-        console.log(match)
-        console.log("\n");
-
-        if(match){
-            directions.push(
-                {
-                    direction : match[1],
-                    amount : match[2]
-                }
-            )
-        }
-        i++;
     }
-
-
     return directions;
+}
+
+let applyRegex = (list) => {
+        
+    let re =  RegExp("(forward|up|down)\s(\d*)", "g")
+
+    return list.map((x) =>{
+        console.log(x)
+        return
+        match = re.exec(x)
+
+        return {
+            direction : match[1],
+            value : match[2]
+        };
+    })
 }
 
 
 
 
 let main = async () =>{
+
     directions = await readInByLine();
+    directions = applyRegex(directions);
     console.log(directions);
 }
 
