@@ -2,48 +2,33 @@ const fs = require('fs');
 const readline = require('readline');
 
 
+direction =  fs.readFileSync("./directions.txt").toString().split("\n").map((x) =>{
+    return {direction : x.split(" ")[0], value : parseInt(x.split(" ")[1])}
+})
 
-let readInByLine = async () =>{
-    const directions = []
-    const fileStream = fs.createReadStream("directions.txt");
+let calc =  () => {
 
-    const rl = readline.createInterface({
-        input: fileStream,
-        crlfDelay: Infinity
-    });
+    let horizontal = 0, depth = 0, aim_depth = 0;
 
-    for await (const line of rl){
-        
-        directions.push(line)
-
-    }
-    return directions;
-}
-
-let applyRegex = (list) => {
-        
-    let re =  RegExp("(forward|up|down)\s(\d*)", "g")
-
-    return list.map((x) =>{
-        console.log(x)
-        return
-        match = re.exec(x)
-
-        return {
-            direction : match[1],
-            value : match[2]
-        };
+    direction.forEach((x) =>{
+        const {direction, value} = x;
+        switch(direction){
+            case "up":
+                depth -= value;
+                break;
+            case "down":
+                depth += value;
+                break;
+            case "forward":
+                horizontal += value;
+                aim_depth += value * depth;
+        }
     })
+
+    return{
+        part_one : horizontal * depth,
+        part_two : horizontal * aim_depth
+    }
 }
 
-
-
-
-let main = async () =>{
-
-    directions = await readInByLine();
-    directions = applyRegex(directions);
-    console.log(directions);
-}
-
-main()
+console.log(calc())
