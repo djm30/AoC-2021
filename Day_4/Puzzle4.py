@@ -86,10 +86,9 @@ def get_winning_board():
                 return (num, board)
 
 def get_last_winning_board():
-    winning_num = -1
-    winning_board = []
+    winning_num, winning_board = -1, []
     for num in bingo:
-        if len(winning_board) == 100: break
+        if len(winning_board) == len(boards): break
         for b_index, board in enumerate(boards):
             board.check_nums(num)
             if board.check_win():
@@ -103,10 +102,3 @@ print("Part One\n" + str(board.answer_calc(winning_num)))
 
 winning_num, board = get_last_winning_board()
 print("\nPart Two\n" + str(board.answer_calc(winning_num)))
-
-
-
-
-
-
-
