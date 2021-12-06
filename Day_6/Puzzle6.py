@@ -11,7 +11,7 @@ for lantern in data:
     
 num_days = 256
 
-for i in range(num_days):
+for _ in range(num_days):
     zero_val = fish[0]
     for i in range(len(fish)-1):
         fish[i] = fish[i+1]
