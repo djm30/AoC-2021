@@ -19,3 +19,5 @@ for _ in range(num_days):
     fish[8] = zero_val
 
 print(f"Day: {num_days} Fish Count: {sum(fish)}")
+
+#Takes 0.0355004000011831 to run!
