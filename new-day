@@ -1,0 +1,6 @@
+#!/bin/bash
+day=$1
+mkdir Day_$day
+cd Day_$day
+touch Puzzle$day.py testinput.txt input.txt
+echo "Done, Good Luck!"
