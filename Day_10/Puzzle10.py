@@ -33,9 +33,7 @@ for line in lines:
     corrupted = False
     for char in line:
         if char in closing:
-            if compare(stack.pop(), char):
-                continue
-            else:
+            if not compare(stack.pop(), char):
                 corrupted = True
                 syntax_score += syntax_scores[char] 
         else:
