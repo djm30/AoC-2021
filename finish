@@ -5,5 +5,5 @@ python updateReadMe.py
 
 
 git add .
-git commit -m "day_"+day
+git commit -m "day_"+$day
 git push

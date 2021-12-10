@@ -17,10 +17,7 @@ completetion_scores = {')' : 1, ']' : 2, '}' : 3, '>' : 4 }
 completetion_score = []
 
 def compare(char_pop :str, char_last:str) -> bool:
-    if matching_bracket[char_pop] == char_last:
-        return True
-    else:
-        return False
+    return matching_bracket[char_pop] == char_last
 
 def workout_score(left_over_brackets : list) -> int:
     score = 0
