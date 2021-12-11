@@ -27,19 +27,27 @@ for i in range(ndays):
     if len(grid[grid==0]) == 100:
         simultaneous = i
         break
+
+    #Adding one to every octopus 
     grid = grid+1
     flashed = set()
     while True:
+        #Iterating through all values
         for ix in range(1, x_max+1):
             for iy in range(1, y_max+1):
+                #Checking if current loc above 9 and will blink
                 if grid[ix, iy] > 9 and (ix, iy) not in flashed:
+                    #Setting current loc to zero
                     grid[ix, iy] = 0
                     sum_score+=1
                     flashed.add((ix,iy))
                     for x,y in get_surrounding(ix, iy):
+                        #Adding one to every surrounding octopus, except if theyve blinked already
                         if not (x,y) in flashed:
                             grid[x,y]+=1
+        #Checking if any value will blink
         if not len(grid[grid>9]):
+            #if not break
             break
         
 
