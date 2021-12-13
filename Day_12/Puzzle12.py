@@ -110,7 +110,6 @@ def get_path(point : Point, current_path : List, first_small_cave):
                 if path.count(p) >= 2:
                     first_small_cave = True
 
-
     if not first_small_cave or not (point.size == Size.SMALL and  point in path):
         path.append(point)
         if(path[-1] == "end"):
